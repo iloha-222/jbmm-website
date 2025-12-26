@@ -1,0 +1,227 @@
+---
+const generations = [
+  {
+    era: "1960s",
+    name: "Ronnie Bucknum",
+    title: "Formula 1 Pioneer",
+    description: "The first American to drive for Honda in Formula 1, Ronnie Bucknum set the foundation for a racing dynasty. His partnership with Honda in 1964 marked a historic moment in motorsport history.",
+    achievement: "Honda F1 Driver",
+    image: "/images/ronnie-bucknum.jpg"
+  },
+  {
+    era: "1990s–2000s",
+    name: "Jeff Bucknum",
+    title: "IndyCar & IMSA Champion",
+    description: "Carrying forward his father's legacy, Jeff Bucknum competed at the highest levels of American motorsport, racing in IndyCar and IMSA with distinction and building the expertise now shared through JBMM.",
+    achievement: "IndyCar · IMSA",
+    image: "/images/jeff-classic.jpg"
+  },
+  {
+    era: "Present",
+    name: "Spencer Bucknum",
+    title: "Rising IndyCar Talent",
+    description: "The third generation is making his way to IndyCar, following in his grandfather's and father's footsteps. Spencer embodies the family's commitment to excellence as he climbs the racing ladder.",
+    achievement: "Road to IndyCar",
+    image: "/images/spencer-bucknum.jpg"
+  }
+];
+---
+
+<section class="legacy" id="legacy">
+  <div class="container">
+    <div class="legacy__header">
+      <span class="section-label reveal">Our Heritage</span>
+      <h2 class="legacy__title reveal reveal-delay-1">Three Generations<br/>of Racing Excellence</h2>
+      <p class="legacy__intro reveal reveal-delay-2">
+        From the Formula 1 circuits of the 1960s to today's professional racing series,
+        the Bucknum family has been shaping motorsport history for over six decades.
+      </p>
+    </div>
+
+    <div class="legacy__timeline">
+      {generations.map((gen, index) => (
+        <article class="legacy__card reveal" style={`--delay: ${index * 0.15}s`}>
+          <div class="legacy__card-image">
+            <div class="legacy__card-image-inner" style={`background-image: url(${gen.image})`}></div>
+            <span class="legacy__card-era">{gen.era}</span>
+          </div>
+          <div class="legacy__card-content">
+            <span class="legacy__card-achievement">{gen.achievement}</span>
+            <h3 class="legacy__card-name">{gen.name}</h3>
+            <span class="legacy__card-title">{gen.title}</span>
+            <p class="legacy__card-desc">{gen.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="legacy__cta reveal">
+      <a href="#contact" class="btn btn--outline">
+        Learn More About Our Story
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .legacy {
+    padding: var(--space-2xl) 0;
+    background: var(--color-bg);
+    position: relative;
+  }
+
+  .legacy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--color-accent));
+  }
+
+  .legacy__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-md);
+    position: relative;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 1px;
+    background: var(--color-text-subtle);
+  }
+
+  .section-label::before {
+    right: calc(100% + var(--space-sm));
+  }
+
+  .section-label::after {
+    left: calc(100% + var(--space-sm));
+  }
+
+  .legacy__title {
+    margin-bottom: var(--space-md);
+  }
+
+  .legacy__intro {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .legacy__timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .legacy__timeline {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+  }
+
+  .legacy__card {
+    background: var(--color-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .legacy__card:hover {
+    border-color: rgba(196, 30, 58, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .legacy__card-image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  .legacy__card-image-inner {
+    position: absolute;
+    inset: 0;
+    background: var(--color-surface) center center / cover no-repeat;
+    filter: grayscale(40%);
+    transition: var(--transition-slow);
+  }
+
+  .legacy__card:hover .legacy__card-image-inner {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  .legacy__card-era {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text);
+    background: rgba(10, 10, 10, 0.8);
+    padding: 0.25rem 0.75rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .legacy__card-content {
+    padding: var(--space-md);
+  }
+
+  .legacy__card-achievement {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-xs);
+  }
+
+  .legacy__card-name {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .legacy__card-title {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .legacy__card-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--color-text-subtle);
+  }
+
+  .legacy__cta {
+    text-align: center;
+  }
+</style>

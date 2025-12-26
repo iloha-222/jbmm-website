@@ -1,0 +1,212 @@
+---
+// Clean split hero
+---
+
+<section class="hero">
+  <div class="hero__text">
+    <div class="hero__text-inner">
+      <p class="hero__label">Driver Management & Coaching</p>
+
+      <h1 class="hero__title">
+        Motorsport Management.
+        <span class="hero__accent">Built on Legacy.</span>
+      </h1>
+
+      <p class="hero__desc">
+        From Ronnie Bucknum's Formula 1 legacy with Honda to today's rising IndyCar talents, JBMM brings six decades of racing experience.
+      </p>
+
+      <div class="hero__buttons">
+        <a href="#services" class="hero__btn-primary">Our Services</a>
+        <a href="#legacy" class="hero__btn-outline">Meet the Family</a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <strong>1964</strong>
+          <span>Racing Since</span>
+        </div>
+        <div class="hero__stat">
+          <strong>3</strong>
+          <span>Generations</span>
+        </div>
+        <div class="hero__stat">
+          <strong>F1</strong>
+          <span>to IndyCar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__image">
+    <video autoplay muted loop playsinline class="hero__video">
+      <source src="/images/spencer-racing.mp4" type="video/mp4" />
+    </video>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      flex-direction: row;
+    }
+  }
+
+  /* Text side */
+  .hero__text {
+    flex: 1;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 60px;
+  }
+
+  @media (min-width: 900px) {
+    .hero__text {
+      padding: 60px;
+      min-width: 50%;
+      max-width: 50%;
+    }
+  }
+
+  .hero__text-inner {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 900px) {
+    .hero__text-inner {
+      margin: 0 0 0 auto;
+      padding-right: 40px;
+    }
+  }
+
+  .hero__label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C41E3A;
+    margin-bottom: 24px;
+  }
+
+  .hero__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1.05;
+    color: #f5f5f5;
+    margin: 0 0 24px 0;
+  }
+
+  @media (min-width: 900px) {
+    .hero__title {
+      font-size: 56px;
+    }
+  }
+
+  .hero__accent {
+    color: #C41E3A;
+  }
+
+  .hero__desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #888;
+    margin-bottom: 32px;
+  }
+
+  .hero__buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .hero__btn-primary {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #C41E3A;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .hero__btn-primary:hover {
+    background: #a01830;
+  }
+
+  .hero__btn-outline {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid #444;
+    color: #f5f5f5;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.3s;
+  }
+
+  .hero__btn-outline:hover {
+    border-color: #888;
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #222;
+  }
+
+  .hero__stat strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: #f5f5f5;
+  }
+
+  .hero__stat span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  /* Image side */
+  .hero__image {
+    flex: 1;
+    min-height: 400px;
+    position: relative;
+  }
+
+  @media (min-width: 900px) {
+    .hero__image {
+      min-width: 50%;
+      max-width: 50%;
+      min-height: auto;
+    }
+  }
+
+  .hero__image img,
+  .hero__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+</style>

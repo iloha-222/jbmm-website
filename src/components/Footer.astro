@@ -1,0 +1,333 @@
+---
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { label: 'About', href: '#legacy' },
+  { label: 'Services', href: '#services' },
+  { label: 'Drivers', href: '#drivers' },
+  { label: 'Partners', href: '#partners' },
+];
+
+const socialLinks = [
+  { label: 'Instagram', href: '#', icon: 'instagram' },
+  { label: 'LinkedIn', href: '#', icon: 'linkedin' },
+  { label: 'X', href: '#', icon: 'x' },
+];
+---
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer__main">
+      <div class="footer__contact reveal">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="footer__title">Let's Talk</h2>
+        <p class="footer__intro">
+          Ready to take your racing career to the next level?
+          Get in touch with JBMM today.
+        </p>
+
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <select id="subject" name="subject" class="form-input form-select">
+              <option value="">Select a topic</option>
+              <option value="management">Driver Management</option>
+              <option value="coaching">Coaching Inquiry</option>
+              <option value="partnership">Partnership</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group form-group--full">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="message" class="form-input form-textarea" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary form-submit">
+            Send Message
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="footer__info reveal reveal-delay-1">
+        <div class="footer__brand">
+          <img src="/images/logo.png" alt="JBMM" class="footer__logo-img" />
+        </div>
+
+        <nav class="footer__nav">
+          <h3 class="footer__nav-title">Navigation</h3>
+          <ul class="footer__nav-list">
+            {navLinks.map(link => (
+              <li>
+                <a href={link.href} class="footer__nav-link">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div class="footer__social">
+          <h3 class="footer__nav-title">Follow Us</h3>
+          <div class="footer__social-links">
+            {socialLinks.map(link => (
+              <a href={link.href} class="footer__social-link" aria-label={link.label}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        &copy; {currentYear} Jeff Bucknum Motorsport Management. All rights reserved.
+      </p>
+      <div class="footer__legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-lg);
+    background: var(--color-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .footer__main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 1024px) {
+    .footer__main {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    max-width: 400px;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .contact-form {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-group--full {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-fast);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: var(--color-surface);
+  }
+
+  .form-input::placeholder {
+    color: var(--color-text-subtle);
+  }
+
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-sm) center;
+    padding-right: var(--space-lg);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  @media (min-width: 640px) {
+    .form-submit {
+      width: auto;
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+  }
+
+  /* Footer Info */
+  .footer__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 640px) {
+    .footer__info {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer__info {
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+
+  .footer__brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer__logo-img {
+    height: 70px;
+    width: auto;
+  }
+
+  .footer__nav-title {
+    font-family: var(--font-body);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .footer__nav-link {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    transition: var(--transition-fast);
+  }
+
+  .footer__nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .footer__social-links {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  @media (min-width: 1024px) {
+    .footer__social-links {
+      justify-content: flex-end;
+    }
+  }
+
+  .footer__social-link {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    transition: var(--transition-fast);
+  }
+
+  .footer__social-link:hover {
+    color: var(--color-accent);
+  }
+
+  /* Footer Bottom */
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  @media (min-width: 640px) {
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .footer__copyright {
+    font-size: 0.8125rem;
+    color: var(--color-text-subtle);
+  }
+
+  .footer__legal {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .footer__legal a {
+    font-size: 0.8125rem;
+    color: var(--color-text-subtle);
+    transition: var(--transition-fast);
+  }
+
+  .footer__legal a:hover {
+    color: var(--color-text);
+  }
+</style>

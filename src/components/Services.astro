@@ -1,0 +1,253 @@
+---
+const services = [
+  {
+    number: "01",
+    title: "Driver Management",
+    description: "Full-service career management for professional racing drivers. From contract negotiations to sponsorship acquisition, we handle every aspect of your racing career so you can focus on what matters: winning.",
+    features: ["Contract Negotiation", "Sponsorship Acquisition", "Media Relations", "Career Strategy"]
+  },
+  {
+    number: "02",
+    title: "Professional Coaching",
+    description: "World-class driver coaching from professionals who have competed at the highest levels. Our coaching programs are designed to unlock your full potential on and off the track.",
+    features: ["On-Track Coaching", "Data Analysis", "Mental Performance", "Physical Training"]
+  },
+  {
+    number: "03",
+    title: "Career Development",
+    description: "Strategic career planning for aspiring and professional drivers. We provide the roadmap and connections needed to advance through the racing ranks and achieve your goals.",
+    features: ["Career Planning", "Team Placement", "Talent Assessment", "Industry Networking"]
+  }
+];
+---
+
+<section class="services" id="services">
+  <div class="services__bg"></div>
+
+  <div class="container">
+    <div class="services__header">
+      <div class="services__header-left">
+        <span class="section-label reveal">What We Do</span>
+        <h2 class="services__title reveal reveal-delay-1">Services</h2>
+      </div>
+      <p class="services__intro reveal reveal-delay-2">
+        Comprehensive motorsport management services built on decades of
+        professional racing experience and industry relationships.
+      </p>
+    </div>
+
+    <div class="services__grid">
+      {services.map((service, index) => (
+        <article class="service reveal" style={`--delay: ${index * 0.1}s`}>
+          <div class="service__header">
+            <span class="service__number">{service.number}</span>
+            <div class="service__line"></div>
+          </div>
+          <h3 class="service__title">{service.title}</h3>
+          <p class="service__desc">{service.description}</p>
+          <ul class="service__features">
+            {service.features.map(feature => (
+              <li class="service__feature">
+                <span class="service__feature-dot"></span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="services__cta reveal">
+      <div class="services__cta-content">
+        <h3 class="services__cta-title">Ready to Accelerate Your Career?</h3>
+        <p class="services__cta-text">Let's discuss how JBMM can help you reach the next level.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">
+        Start the Conversation
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: var(--space-2xl) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%);
+    z-index: -1;
+  }
+
+  .services__bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(196, 30, 58, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .services__header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    align-items: end;
+  }
+
+  @media (min-width: 768px) {
+    .services__header {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .services__title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+  }
+
+  .services__intro {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: 500px;
+  }
+
+  @media (min-width: 768px) {
+    .services__intro {
+      text-align: right;
+      margin-left: auto;
+    }
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .services__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .service {
+    padding: var(--space-lg);
+    background: var(--color-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .service:hover {
+    border-color: rgba(196, 30, 58, 0.3);
+    background: var(--color-surface);
+  }
+
+  .service__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .service__number {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+  }
+
+  .service__line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--color-text-subtle), transparent);
+  }
+
+  .service__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--space-sm);
+  }
+
+  .service__desc {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .service__features {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-sm);
+  }
+
+  .service__feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    padding: 0.25rem 0;
+  }
+
+  .service__feature-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .services__cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-card) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .services__cta {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .services__cta-title {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .services__cta-text {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+</style>

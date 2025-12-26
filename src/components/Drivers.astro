@@ -1,0 +1,303 @@
+---
+const drivers = [
+  {
+    name: "Spencer Bucknum",
+    role: "Rising IndyCar Talent",
+    team: "JBMM",
+    series: "Road to IndyCar",
+    image: "/images/spencer-podium.jpg",
+    stats: [
+      { label: "Goal", value: "IndyCar" },
+      { label: "Generation", value: "3rd" }
+    ]
+  }
+];
+
+const results = [
+  { year: "2024", event: "Season Progress", position: "Climbing the Ladder", series: "Open Wheel" },
+  { year: "2023", event: "Development Season", position: "Strong Results", series: "Formula Racing" },
+];
+---
+
+<section class="drivers" id="drivers">
+  <div class="container">
+    <div class="drivers__header">
+      <span class="section-label reveal">Our Roster</span>
+      <h2 class="drivers__title reveal reveal-delay-1">Drivers & Results</h2>
+    </div>
+
+    <div class="drivers__content">
+      <div class="drivers__featured reveal">
+        {drivers.map(driver => (
+          <article class="driver-card">
+            <div class="driver-card__image">
+              <div class="driver-card__image-inner" style={`background-image: url(${driver.image})`}></div>
+              <div class="driver-card__overlay"></div>
+            </div>
+            <div class="driver-card__content">
+              <div class="driver-card__meta">
+                <span class="driver-card__team">{driver.team}</span>
+                <span class="driver-card__series">{driver.series}</span>
+              </div>
+              <h3 class="driver-card__name">{driver.name}</h3>
+              <span class="driver-card__role">{driver.role}</span>
+              <div class="driver-card__stats">
+                {driver.stats.map(stat => (
+                  <div class="driver-card__stat">
+                    <span class="driver-card__stat-label">{stat.label}</span>
+                    <span class="driver-card__stat-value">{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="drivers__results reveal reveal-delay-1">
+        <h3 class="results__title">Recent Results</h3>
+        <div class="results__list">
+          {results.map((result, index) => (
+            <div class="result" style={`--delay: ${index * 0.1}s`}>
+              <div class="result__year">{result.year}</div>
+              <div class="result__info">
+                <span class="result__event">{result.event}</span>
+                <span class="result__series">{result.series}</span>
+              </div>
+              <div class="result__position">{result.position}</div>
+            </div>
+          ))}
+        </div>
+        <a href="#contact" class="results__link">
+          View Full Results
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .drivers {
+    padding: var(--space-2xl) 0;
+    background: var(--color-bg);
+  }
+
+  .drivers__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .drivers__title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .drivers__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 1024px) {
+    .drivers__content {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .driver-card {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .driver-card__image {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+
+  .driver-card__image-inner {
+    position: absolute;
+    inset: 0;
+    background: var(--color-surface) center center / cover no-repeat;
+    filter: grayscale(30%);
+    transition: var(--transition-slow);
+  }
+
+  .driver-card:hover .driver-card__image-inner {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+  }
+
+  .driver-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--color-bg-card) 0%, transparent 50%);
+  }
+
+  .driver-card__content {
+    padding: var(--space-lg);
+    position: relative;
+    margin-top: -var(--space-lg);
+  }
+
+  .driver-card__meta {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .driver-card__team,
+  .driver-card__series {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+  }
+
+  .driver-card__team {
+    background: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .driver-card__name {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .driver-card__role {
+    display: block;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .driver-card__stats {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .driver-card__stat-label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-bottom: 0.25rem;
+  }
+
+  .driver-card__stat-value {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-text);
+  }
+
+  /* Results */
+  .drivers__results {
+    background: var(--color-bg-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: var(--space-lg);
+  }
+
+  .results__title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .results__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .result {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-md);
+    align-items: center;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-fast);
+  }
+
+  .result:hover {
+    background: rgba(255, 255, 255, 0.02);
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+    margin-left: calc(-1 * var(--space-sm));
+    margin-right: calc(-1 * var(--space-sm));
+  }
+
+  .result__year {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    min-width: 60px;
+  }
+
+  .result__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .result__event {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .result__series {
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
+  }
+
+  .result__position {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    text-align: right;
+  }
+
+  .results__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: var(--transition-fast);
+  }
+
+  .results__link:hover {
+    gap: var(--space-sm);
+  }
+
+  .results__link svg {
+    transition: var(--transition-fast);
+  }
+
+  .results__link:hover svg {
+    transform: translateX(4px);
+  }
+</style>

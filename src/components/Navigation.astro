@@ -1,0 +1,251 @@
+---
+const navItems = [
+  { label: 'About', href: '#legacy' },
+  { label: 'Services', href: '#services' },
+  { label: 'Drivers', href: '#drivers' },
+  { label: 'Partners', href: '#partners' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="nav">
+  <div class="nav__inner container">
+    <a href="/" class="nav__logo" aria-label="JBMM Home">
+      <img src="/images/logo.png" alt="JBMM" class="logo__img" />
+    </a>
+
+    <nav class="nav__menu" aria-label="Main navigation">
+      <ul class="nav__list">
+        {navItems.map(item => (
+          <li class="nav__item">
+            <a href={item.href} class="nav__link">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a href="#contact" class="nav__cta btn btn--primary">Get in Touch</a>
+
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav__toggle-line"></span>
+      <span class="nav__toggle-line"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--space-sm) 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-base);
+  }
+
+  .nav.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-height);
+  }
+
+  .nav__logo {
+    display: flex;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .logo__img {
+    height: 50px;
+    width: auto;
+    background: #f5f5f5;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+
+  .placeholder__text {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .logo__text {
+      display: block;
+    }
+  }
+
+  .nav__menu {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .nav__menu {
+      display: block;
+    }
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    list-style: none;
+  }
+
+  .nav__link {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    position: relative;
+    padding: var(--space-xs) 0;
+    transition: var(--transition-fast);
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-base);
+  }
+
+  .nav__link:hover {
+    color: var(--color-text);
+  }
+
+  .nav__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nav__cta {
+    display: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 1024px) {
+    .nav__cta {
+      display: inline-flex;
+    }
+  }
+
+  .nav__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
+  }
+
+  @media (min-width: 1024px) {
+    .nav__toggle {
+      display: none;
+    }
+  }
+
+  .nav__toggle-line {
+    width: 100%;
+    height: 2px;
+    background: var(--color-text);
+    transition: var(--transition-base);
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__toggle-line:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__toggle-line:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  /* Mobile menu overlay */
+  @media (max-width: 1023px) {
+    .nav__menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-base);
+    }
+
+    .nav__menu.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav__list {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .nav__link {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+    }
+  }
+</style>
+
+<script>
+  // Scroll effect
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', (!isOpen).toString());
+    menu?.classList.toggle('is-open');
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.classList.remove('is-open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
